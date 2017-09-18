@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/const.js"],"names":["placeholder"],"mappings":"AACA,OAAO,IAAMA,cAAc,eAApB","file":"const.js","sourcesContent":["// @flow\nexport const placeholder = 'Write here...'\n"]}

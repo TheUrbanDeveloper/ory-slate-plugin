@@ -1,26 +1,27 @@
 // @flow
 // FIXME #125: missing types for slate internals
 /* eslint-disable new-cap, arrow-body-style, react/display-name */
-import { List } from 'immutable'
-import head from 'ramda/src/head'
-import map from 'ramda/src/map'
-import path from 'ramda/src/path'
-import reduce from 'ramda/src/reduce'
-import tail from 'ramda/src/tail'
-import React from 'react'
-import type { Props } from './Component'
-import AlignmentPlugin from './plugins/alignment'
-import BlockquotePlugin from './plugins/blockquote'
-import CodePlugin from './plugins/code'
-import EmphasizePlugin from './plugins/emphasize'
-import HeadingsPlugin from './plugins/headings'
-import LinkPlugin from './plugins/link'
-import ListsPlugin from './plugins/lists'
-import ParagraphPlugin, { P } from './plugins/paragraph'
-import parse5 from 'parse5'
+import { List } from 'immutable';
+import head from 'ramda/src/head';
+import map from 'ramda/src/map';
+import path from 'ramda/src/path';
+import reduce from 'ramda/src/reduce';
+import tail from 'ramda/src/tail';
+import React from 'react';
+import type { Props } from './Component';
+import AlignmentPlugin from './plugins/alignment';
+import BlockquotePlugin from './plugins/blockquote';
+import CodePlugin from './plugins/code';
+import EmphasizePlugin from './plugins/emphasize';
+import HeadingsPlugin from './plugins/headings';
+import LinkPlugin from './plugins/link';
+import ListsPlugin from './plugins/lists';
+import ParagraphPlugin, { P } from './plugins/paragraph';
+import parse5 from 'parse5';
 
 // FIXME #126
-import { Document, Html, Raw, State, Plain } from 'slate'
+import { Document, Raw, State, Plain } from 'slate';
+import Html from 'slate-html-serializer';
 
 const DEFAULT_NODE = P
 

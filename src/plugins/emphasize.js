@@ -1,8 +1,8 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
 import React from 'react'
-import BoldIcon from 'material-ui/svg-icons/editor/format-bold'
-import ItalicIcon from 'material-ui/svg-icons/editor/format-italic'
-import UnderlinedIcon from 'material-ui/svg-icons/editor/format-underlined'
+import FormatBoldIcon from 'material-ui-icons/FormatBold'
+import FormatItalicIcon from 'material-ui-icons/FormatItalic'
+import FormatUnderlinedIcon from 'material-ui-icons/FormatUnderlined'
 import { makeTagMark, ToolbarButton } from '../helpers'
 import Plugin from './Plugin'
 import type { Props } from './props'
@@ -67,9 +67,9 @@ export default class EmphasizePlugin extends Plugin {
   }
 
   hoverButtons = [
-    createButton(STRONG, <BoldIcon />),
-    createButton(EM, <ItalicIcon />),
-    createButton(U, <UnderlinedIcon />)
+    createButton(STRONG, <FormatBoldIcon />),
+    createButton(EM, <FormatItalicIcon />),
+    createButton(U, <FormatUnderlinedIcon />)
   ]
 
   deserialize = (el, next) => {

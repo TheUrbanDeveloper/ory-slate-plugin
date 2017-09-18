@@ -1,7 +1,7 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
 import React from 'react'
-import ListIcon from 'material-ui/svg-icons/action/list'
-import OrderedListIcon from 'material-ui/svg-icons/editor/format-list-numbered'
+import FormatListBulletedIcon from 'material-ui-icons/FormatListBulleted'
+import FormatListNumberedIcon from 'material-ui-icons/FormatListNumbered'
 import createListPlugin from 'slate-edit-list'
 import type { Props } from './props'
 
@@ -87,8 +87,8 @@ export default class ListsPlugin extends Plugin {
   }
 
   toolbarButtons = [
-    this.createButton(UL, <ListIcon />),
-    this.createButton(OL, <OrderedListIcon />)
+    this.createButton(UL, <FormatListBulletedIcon />),
+    this.createButton(OL, <FormatListNumberedIcon />)
   ]
 
   deserialize = (el, next) => {

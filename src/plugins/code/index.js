@@ -1,6 +1,6 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
 import React from 'react'
-import CodeIcon from 'material-ui/svg-icons/action/code'
+import CodeIcon from 'material-ui-icons/Code'
 import { Data } from 'slate'
 import { makeTagMark, ToolbarButton } from '../../helpers'
 import Plugin from '../Plugin'

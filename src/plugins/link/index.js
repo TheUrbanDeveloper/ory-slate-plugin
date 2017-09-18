@@ -1,20 +1,19 @@
 /* eslint-disable no-alert, prefer-reflect, default-case, react/display-name */
-import LinkIcon from 'material-ui/svg-icons/content/link'
+import LinkIcon from 'material-ui-icons/Link'
 import React, { Component } from 'react'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import TextField from 'material-ui/TextField'
 import { ToolbarButton } from '../../helpers'
 import Plugin from '../Plugin'
 import Link from './node'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
+import Dialog, { DialogTitle } from 'material-ui/Dialog'
+import Button from 'material-ui/Button'
 import { Data } from 'slate'
 import type { Props } from '../props'
 
 export const A = 'LINK/LINK'
 
-class Button extends Component {
+class LinkButton extends Component {
   state = {
     open: false,
     href: '',
@@ -137,18 +136,16 @@ class Button extends Component {
 
   render() {
     const actions = [
-      <FlatButton
+      <Button
         key="0"
-        label="Cancel"
-        primary
+        color="accent"
         onTouchTap={this.handleClose}
-      />,
-      <FlatButton
+      >Cancel</Button>,
+      <Button
         key="1"
-        label="Submit"
-        primary
+        color="primary"
         onTouchTap={this.handleSubmit}
-      />
+      >Submit</Button>
     ]
     const { editorState } = this.props
 
@@ -156,7 +153,7 @@ class Button extends Component {
       (inline: any) => inline.type === A
     )
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider theme={createMuiTheme()}>
         <span>
           <ToolbarButton
             onClick={this.onClick}
@@ -166,15 +163,13 @@ class Button extends Component {
           <span>
             <Dialog
               className="ory-prevent-blur"
-              title="Create a link"
-              modal={false}
               open={this.state.open}
-              actions={[actions]}
             >
+                <DialogTitle>Create a link</DialogTitle>
               {this.state.wasExpanded ? null : (
                 <div>
                   <TextField
-                    hintText="Link title"
+                    helperText="Link title"
                     onChange={this.onTitleChange}
                     value={this.state.title}
                   />
@@ -182,11 +177,12 @@ class Button extends Component {
               )}
               <div ref={this.onRef}>
                 <TextField
-                  hintText="http://example.com/my/link.html"
+                  helperText="http://example.com/my/link.html"
                   onChange={this.onHrefChange}
                   value={this.state.href}
                 />
               </div>
+              {actions}
             </Dialog>
           </span>
         </span>
@@ -200,8 +196,8 @@ export default class LinkPlugin extends Plugin {
 
   nodes = { [A]: Link }
 
-  hoverButtons = [Button]
-  toolbarButtons = [Button]
+  hoverButtons = [LinkButton]
+  toolbarButtons = [LinkButton]
 
   deserialize = (el, next) => {
     switch (el.tagName.toLowerCase()) {
