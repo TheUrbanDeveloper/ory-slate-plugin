@@ -20,7 +20,7 @@ const UpperToolbar = ({
             <AppBar
                 position="static"
                 style={{
-                    backgroundColor: 'lightgrey',
+                    backgroundColor: '#F7F7F7',
                     boxShadow: 'none',
                     width: 'inherit'
                 }}

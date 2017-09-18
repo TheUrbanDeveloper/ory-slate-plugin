@@ -91,7 +91,16 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
                                 />)
                             }
                         })}
-                        { plugin.toolbarButtons && plugin.toolbarButtons.length > 0 && <span>|</span> }
+                        { plugin.toolbarButtons && i !== (plugins.length - 1) &&
+                            plugin.toolbarButtons.length > 0 &&
+                        <div style={
+                            {
+                                display: 'inline-flex',
+                                borderLeft: '1px solid #3C3C3C',
+                                height: '24px',
+                                flex: '0 0 auto',
+                            }
+                        }></div>}
                     </span>
                 )
             )}
