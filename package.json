@@ -2,7 +2,7 @@
   "name": "ory-editor-plugins-slate",
   "version": "0.0.0",
   "main": "./lib/index.js",
-  "author": "ORY GmbH",
+  "author": "ORY GmbH - modified by MaxKelsen Pty Ltd.",
   "license": "GNU Lesser General Public License v3.0",
   "scripts": {
     "build": "npm-run-all --parallel build:lib build:css",
