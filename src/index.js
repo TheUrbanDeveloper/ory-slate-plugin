@@ -80,7 +80,7 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
     const ToolbarButtons = ({ editorState, onChange, focus }: Props) => (
         <div>
             {plugins.map((plugin: Plugin, i: number) => (
-                    <span>
+                    <span key={`${i}`}>
                         {plugin.toolbarButtons.map((Button: any, j: number) => {
                             if(Button) {
                                 return(<Button
