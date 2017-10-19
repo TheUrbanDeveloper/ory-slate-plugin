@@ -1,8 +1,11 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
 import React from 'react'
-import FormatBoldIcon from 'material-ui-icons/FormatBold'
-import FormatItalicIcon from 'material-ui-icons/FormatItalic'
-import FormatUnderlinedIcon from 'material-ui-icons/FormatUnderlined'
+import BoldIcon from 'material-ui/svg-icons/editor/format-bold'
+import ItalicIcon from 'material-ui/svg-icons/editor/format-italic'
+import UnderlinedIcon from 'material-ui/svg-icons/editor/format-underlined'
+import StrikethroughIcon from 'material-ui/svg-icons/editor/format-strikethrough'
+import SizeIcon from 'material-ui/svg-icons/editor/format-size'
+import TextFieldsIcon from 'material-ui/svg-icons/editor/text-fields'
 import { makeTagMark, ToolbarButton } from '../helpers'
 import Plugin from './Plugin'
 import type { Props } from './props'
@@ -10,6 +13,9 @@ import type { Props } from './props'
 export const STRONG = 'EMPHASIZE/STRONG'
 export const EM = 'EMPHASIZE/EM'
 export const U = 'EMPHASIZE/U'
+export const S = 'EMPHASIZE/S'
+export const SUB = 'EMPHASIZE/SUB'
+export const SUP = 'EMPHASIZE/SUP'
 
 // eslint-disable-next-line react/display-name
 const createButton = (type, icon) => ({ editorState, onChange }: Props) => {
@@ -38,7 +44,10 @@ export default class EmphasizePlugin extends Plugin {
   marks = {
     [STRONG]: makeTagMark('strong'),
     [EM]: makeTagMark('em'),
-    [U]: makeTagMark('u')
+    [U]: makeTagMark('u'),
+    [S]: makeTagMark('s'),
+    [SUB]: makeTagMark('sub'),
+    [SUP]: makeTagMark('sup')
   }
 
   onKeyDown = (e: Event, data: { key: string, isMod: boolean }, state) => {
@@ -55,6 +64,9 @@ export default class EmphasizePlugin extends Plugin {
         case 'u':
           mark = U
           break
+        case 'k':
+          mark = S
+          break
         default:
           return
       }
@@ -67,9 +79,12 @@ export default class EmphasizePlugin extends Plugin {
   }
 
   hoverButtons = [
-    createButton(STRONG, <FormatBoldIcon />),
-    createButton(EM, <FormatItalicIcon />),
-    createButton(U, <FormatUnderlinedIcon />)
+    createButton(STRONG, <BoldIcon />),
+    createButton(EM, <ItalicIcon />),
+    createButton(U, <UnderlinedIcon />),
+    createButton(S, <StrikethroughIcon />),
+    createButton(SUB, <TextFieldsIcon />),
+    createButton(SUP, <SizeIcon />)
   ]
 
   deserialize = (el, next) => {
@@ -94,10 +109,41 @@ export default class EmphasizePlugin extends Plugin {
           type: U,
           nodes: next(el.childNodes)
         }
+      case 's':
+        return {
+          kind: 'mark',
+          type: S,
+          nodes: next(el.childNodes)
+        }
+      case 'sub':
+        return {
+          kind: 'mark',
+          type: SUB,
+          nodes: next(el.childNodes)
+        }
+      case 'sup':
+        return {
+          kind: 'mark',
+          type: SUP,
+          nodes: next(el.childNodes)
+        }
     }
   }
 
   serialize = (object: { type: string, kind: string }, children: any[]) => {
+    const styles = {
+      sub: {
+        position: 'relative',
+        bottom: '0.5em',
+        fontSize: '0.8em'
+      },
+      sup: {
+        position: 'relative',
+        top: '0.3em',
+        fontSize: '0.8em'
+      }
+    };
+
     if (object.kind !== 'mark') {
       return
     }
@@ -108,6 +154,12 @@ export default class EmphasizePlugin extends Plugin {
         return <em>{children}</em>
       case U:
         return <u>{children}</u>
+      case S:
+        return <s>{children}</s>
+      case SUB:
+        return <span style={styles.sub}>{children}</span>
+      case SUP:
+        return <span style={styles.sup}>{children}</span>
     }
   }
 }

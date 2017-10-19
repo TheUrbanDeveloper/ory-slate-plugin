@@ -1,9 +1,9 @@
 /* eslint-disable prefer-reflect */
 import React from 'react'
-import FormatAlignLeftIcon from 'material-ui-icons/FormatAlignLeft'
-import FormatAlignCenterIcon from 'material-ui-icons/FormatAlignCenter'
-import FormatAlignRightIcon from 'material-ui-icons/FormatAlignRight'
-import FormatAlignJustifyIcon from 'material-ui-icons/FormatAlignJustify'
+import AlignLeftIcon from 'material-ui/svg-icons/editor/format-align-left'
+import AlignCenterIcon from 'material-ui/svg-icons/editor/format-align-center'
+import AlignRightIcon from 'material-ui/svg-icons/editor/format-align-right'
+import AlignJustifyIcon from 'material-ui/svg-icons/editor/format-align-justify'
 
 import { ToolbarButton } from '../helpers'
 import Plugin from './Plugin'
@@ -16,15 +16,18 @@ export default class AlignmentPlugin extends Plugin {
   createButton = (align, icon) => ({ editorState, onChange }: Props) => {
     const onClick = e => {
       e.preventDefault()
-
+      let indent;
       const isActive = editorState.blocks.some(
-        block => block.data.get('align') === align
+        block => {
+          indent = block.data.get('indent')
+          block.data.get('align') === align
+        }
       )
 
       onChange(
         editorState
           .transform()
-          .setBlock({ data: { align: isActive ? null : align } })
+          .setBlock({ data: { align: isActive ? null : align, indent } })
           .apply()
       )
     }
@@ -39,9 +42,9 @@ export default class AlignmentPlugin extends Plugin {
   name = 'alignment'
 
   toolbarButtons = [
-    this.createButton('left', <FormatAlignLeftIcon />),
-    this.createButton('center', <FormatAlignCenterIcon />),
-    this.createButton('right', <FormatAlignRightIcon />),
-    this.createButton('justify', <FormatAlignJustifyIcon />)
+    this.createButton('left', <AlignLeftIcon />),
+    this.createButton('center', <AlignCenterIcon />),
+    this.createButton('right', <AlignRightIcon />),
+    this.createButton('justify', <AlignJustifyIcon />)
   ]
 }

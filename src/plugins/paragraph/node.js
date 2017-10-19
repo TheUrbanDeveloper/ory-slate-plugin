@@ -18,8 +18,9 @@ class Paragraph extends Component {
   render() {
     const { node, state, children, attributes } = this.props
     const align = this.props.node.data.get('align')
+    const indent = this.props.node.data.get('indent')
     return (
-      <p {...attributes} style={{ textAlign: align }}>
+      <p {...attributes} style={{ textAlign: align, marginLeft: (5 * indent) + '%' }}>
         <Placeholder
           className="ory-plugins-content-slate-paragraph-placeholder"
           node={node}

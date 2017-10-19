@@ -1,11 +1,11 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
 import React from 'react'
-import LooksOneIcon from 'material-ui-icons/LooksOne'
-import LooksTwoIcon from 'material-ui-icons/LooksTwo'
-import Looks3Icon from 'material-ui-icons/Looks3'
-import Looks4Icon from 'material-ui-icons/Looks4'
-import Looks5Icon from 'material-ui-icons/Looks5'
-import Looks6Icon from 'material-ui-icons/Looks6'
+import H1Icon from 'material-ui/svg-icons/image/looks-one'
+import H2Icon from 'material-ui/svg-icons/image/looks-two'
+import H3Icon from 'material-ui/svg-icons/image/looks-3'
+import H4Icon from 'material-ui/svg-icons/image/looks-4'
+import H5Icon from 'material-ui/svg-icons/image/looks-5'
+import H6Icon from 'material-ui/svg-icons/image/looks-6'
 // import { Data } from 'slate'
 import { makeTagNode, ToolbarButton } from '../helpers'
 import Plugin from './Plugin'
@@ -66,12 +66,12 @@ export default class HeadingsPlugin extends Plugin {
   }
 
   toolbarButtons = [
-    this.createButton(H1, <LooksOneIcon />),
-    this.createButton(H2, <LooksTwoIcon />),
-    this.createButton(H3, <Looks3Icon />),
-    this.createButton(H4, <Looks4Icon />),
-    this.createButton(H5, <Looks5Icon />),
-    this.createButton(H6, <Looks6Icon />)
+    this.createButton(H1, <H1Icon />),
+    this.createButton(H2, <H2Icon />),
+    this.createButton(H3, <H3Icon />),
+    this.createButton(H4, <H4Icon />),
+    this.createButton(H5, <H5Icon />),
+    this.createButton(H6, <H6Icon />)
   ]
 
   deserialize = (el, next) => {

@@ -23,8 +23,7 @@
   },
   "dependencies": {
     "immutable": "^3.8.1",
-    "material-ui": "^1.0.0-beta.10",
-    "material-ui-icons": "^1.0.0-beta.10",
+    "material-ui": "^0.19.4",
     "ory-editor-core": "0.0.0",
     "ory-editor-ui": "0.0.0",
     "parse5": "^3.0.2",

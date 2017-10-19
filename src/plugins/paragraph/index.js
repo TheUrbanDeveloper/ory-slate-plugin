@@ -27,12 +27,22 @@ export default class ParagraphPlugin extends Plugin {
     object: { type: string, kind: string, data: any },
     children: any[]
   ) => {
+    console.log(object.data);
     if (object.kind !== 'block') {
       return
     }
     switch (object.type) {
       case P:
-        return <p style={{ textAlign: object.data.get('align') }}>{children}</p>
+        return (
+          <p
+            style={{
+              textAlign: object.data.get('align'),
+              marginLeft: (5 * object.data.get('indent')) + '%'
+            }}
+          >
+            {children}
+          </p>
+        )
     }
   }
 }
