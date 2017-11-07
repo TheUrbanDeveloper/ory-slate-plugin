@@ -22,7 +22,7 @@ class Glossary extends React.Component {
       this.setState({ anchor: event.target });
     } else {
       event.persist();
-      request.get(`${METADATA_SERVICE}/glossary/id/${this.props.node.data.get('id')}`)
+      request.get(`${METADATA_SERVICE}/glossary/search?id=${this.props.node.data.get('id')}`)
         .then(res => {
           this.setState({
             anchor: event.target,

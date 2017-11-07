@@ -113,7 +113,7 @@ class GlossaryButton extends Component {
                 .apply()
             onChange(newState)
         } else if (editorState.isExpanded) {
-            request.get(`${METADATA_SERVICE}/glossary/search/${selection}`)
+            request.get(`${METADATA_SERVICE}/glossary/search?term=${selection}`)
                 .then(res => {
                     // Search the glossary for the term
                     this.setState({
@@ -228,7 +228,7 @@ class GlossaryButton extends Component {
         if(e.value.length > 3) {
             if (e.value != this.state.term) {
                 // do a new search
-                request.get(`${METADATA_SERVICE}/glossary/search/${e.value}`)
+                request.get(`${METADATA_SERVICE}/glossary/search?term=${e.value}`)
                     .then(res => {
                         this.setState({
                             options: res.body.docs

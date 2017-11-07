@@ -45,7 +45,6 @@
     "babel-core": "^6.26.0",
     "babel-node": "^6.5.3",
     "babel-preset-env": "^1.6.1",
-    "postcss-import": "^11.0.0",
-    "postcss-nested": "^2.1.2"
+    "postcss-import": "^11.0.0"
   }
 }
