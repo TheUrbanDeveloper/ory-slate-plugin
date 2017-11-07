@@ -2,7 +2,7 @@
 // TODO lint: prefer-reflect doesn't work with slate state #158
 /* eslint no-duplicate-imports: ["off"] */
 /* eslint prefer-reflect: ["off"] */
-import Subject from 'material-ui/svg-icons/action/subject'
+import Subject from 'material-ui-icons/Subject'
 import { compose, flatten, map, mergeAll, prop, pathOr } from 'ramda'
 import { Html } from 'slate'
 import React from 'react'

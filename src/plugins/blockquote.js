@@ -1,5 +1,5 @@
 /* eslint-disable prefer-reflect, default-case, react/display-name */
-import BlockquoteIcon from 'material-ui/svg-icons/editor/format-quote'
+import BlockquoteIcon from 'material-ui-icons/FormatQuote'
 import React from 'react'
 import createBlockquotePlugin from 'slate-edit-blockquote'
 

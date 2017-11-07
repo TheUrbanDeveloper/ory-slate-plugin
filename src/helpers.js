@@ -1,4 +1,4 @@
-import IconButton from 'material-ui/IconButton'
+import Button from 'material-ui/Button'
 import React from 'react'
 
 export const makeTagNode = Tag => {
@@ -49,10 +49,10 @@ export const ToolbarButton = ({
   isActive: string,
   onClick(): void
 }) => (
-  <IconButton
+  <Button
     onTouchTap={onClick}
-    iconStyle={isActive ? { color: 'rgb(0, 188, 212)' } : { color: 'white' }}
+    style={isActive ? { color: 'rgb(0, 188, 212)' } : { color: 'white' }}
   >
     {icon}
-  </IconButton>
+  </Button>
 )

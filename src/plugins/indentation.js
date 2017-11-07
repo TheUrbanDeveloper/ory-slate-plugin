@@ -1,7 +1,7 @@
 /* eslint-disable prefer-reflect */
 import React from 'react'
-import IndentDecreaseIcon from 'material-ui/svg-icons/editor/format-indent-decrease';
-import IndentIncreaseIcon from 'material-ui/svg-icons/editor/format-indent-increase';
+import IndentDecreaseIcon from 'material-ui-icons/FormatIndentDecrease';
+import IndentIncreaseIcon from 'material-ui-icons/FormatIndentIncrease';
 
 import { ToolbarButton } from '../helpers'
 import Plugin from './Plugin'

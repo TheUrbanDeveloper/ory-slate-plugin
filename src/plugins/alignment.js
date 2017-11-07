@@ -1,9 +1,9 @@
 /* eslint-disable prefer-reflect */
 import React from 'react'
-import AlignLeftIcon from 'material-ui/svg-icons/editor/format-align-left'
-import AlignCenterIcon from 'material-ui/svg-icons/editor/format-align-center'
-import AlignRightIcon from 'material-ui/svg-icons/editor/format-align-right'
-import AlignJustifyIcon from 'material-ui/svg-icons/editor/format-align-justify'
+import AlignLeftIcon from 'material-ui-icons/FormatAlignLeft'
+import AlignCenterIcon from 'material-ui-icons/FormatAlignCenter'
+import AlignRightIcon from 'material-ui-icons/FormatAlignRight'
+import AlignJustifyIcon from 'material-ui-icons/FormatAlignJustify'
 
 import { ToolbarButton } from '../helpers'
 import Plugin from './Plugin'

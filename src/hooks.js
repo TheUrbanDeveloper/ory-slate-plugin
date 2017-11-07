@@ -18,6 +18,8 @@ import HeadingsPlugin from './plugins/headings'
 import LinkPlugin from './plugins/link'
 import ListsPlugin from './plugins/lists'
 import ParagraphPlugin, { P } from './plugins/paragraph'
+import GlossaryPlugin from './plugins/glossary';
+import ClearPlugin from './plugins/clearformatting';
 import parse5 from 'parse5'
 
 // FIXME #126
@@ -33,8 +35,10 @@ export const defaultPlugins = [
   new CodePlugin({ DEFAULT_NODE }),
   new ListsPlugin({ DEFAULT_NODE }),
   new BlockquotePlugin({ DEFAULT_NODE }),
+  new GlossaryPlugin({ DEFAULT_NODE }),
   new AlignmentPlugin(),
-  new IndentationPlugin()
+  new IndentationPlugin(),
+  new ClearPlugin({ DEFAULT_NODE }),
   // new KatexPlugin({ DEFAULT_NODE })
 ]
 

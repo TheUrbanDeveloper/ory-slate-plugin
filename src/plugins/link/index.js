@@ -1,20 +1,18 @@
 /* eslint-disable no-alert, prefer-reflect, default-case, react/display-name */
-import LinkIcon from 'material-ui/svg-icons/content/link'
+import LinkIcon from 'material-ui-icons/Link'
 import React, { Component } from 'react'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
 import { ToolbarButton } from '../../helpers'
 import Plugin from '../Plugin'
 import Link from './node'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
+import Dialog, { DialogTitle, DialogActions, DialogContent } from 'material-ui/Dialog'
+import Button from 'material-ui/Button'
 import { Data } from 'slate'
 import type { Props } from '../props'
 
 export const A = 'LINK/LINK'
 
-class Button extends Component {
+class LinkButton extends Component {
   state = {
     open: false,
     href: '',
@@ -136,41 +134,25 @@ class Button extends Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        key="0"
-        label="Cancel"
-        primary
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        key="1"
-        label="Submit"
-        primary
-        onTouchTap={this.handleSubmit}
-      />
-    ]
     const { editorState } = this.props
 
     const hasLinks = editorState.inlines.some(
       (inline: any) => inline.type === A
     )
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <span>
-          <ToolbarButton
-            onClick={this.onClick}
-            isActive={hasLinks}
-            icon={<LinkIcon />}
-          />
-          <span>
-            <Dialog
-              className="ory-prevent-blur"
-              title="Create a link"
-              modal={false}
-              open={this.state.open}
-              actions={[actions]}
-            >
+      <span>
+        <ToolbarButton
+          onClick={this.onClick}
+          isActive={hasLinks}
+          icon={<LinkIcon />}
+        />
+          <Dialog
+            className="ory-prevent-blur"
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+          >
+            <DialogTitle>Create a link</DialogTitle>
+            <DialogContent>
               {this.state.wasExpanded ? null : (
                 <div>
                   <TextField
@@ -187,10 +169,25 @@ class Button extends Component {
                   value={this.state.href}
                 />
               </div>
-            </Dialog>
-          </span>
-        </span>
-      </MuiThemeProvider>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                key="0"
+                color="accent"
+                onClick={this.handleClose}
+              >
+                Cancel
+              </Button>
+              <Button
+                key="1"
+                color="primary"
+                onClick={this.handleSubmit}
+              >
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
+      </span>
     )
   }
 }
@@ -200,8 +197,8 @@ export default class LinkPlugin extends Plugin {
 
   nodes = { [A]: Link }
 
-  hoverButtons = [Button]
-  toolbarButtons = [Button]
+  hoverButtons = [LinkButton]
+  toolbarButtons = [LinkButton]
 
   deserialize = (el, next) => {
     switch (el.tagName.toLowerCase()) {

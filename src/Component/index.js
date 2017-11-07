@@ -1,6 +1,5 @@
 /* eslint-disable no-alert, prefer-reflect, no-underscore-dangle */
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import React, { Component } from 'react'
 import Portal from 'react-portal'
@@ -69,15 +68,14 @@ class Slate extends Component {
       focus
     } = this.props
     const isOpened = editorState.isExpanded && editorState.isFocused
-
     return (
       <div>
-        <Portal isOpened={isOpened} onOpen={this.handleOpen}>
-          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <MuiThemeProvider theme={createMuiTheme()}>
+          <Portal isOpened={isOpened} onOpen={this.handleOpen}>
             {/* ory-prevent-blur is required to prevent global blurring */}
             <div
               className="ory-prevent-blur ory-plugins-content-slate-inline-toolbar"
-              style={{ padding: 0 }}
+              style={{ padding: 0, backgroundColor: '#212121' }}
             >
               <HoverButtons
                 editorState={editorState}
@@ -85,8 +83,8 @@ class Slate extends Component {
                 focus={focus}
               />
             </div>
-          </MuiThemeProvider>
-        </Portal>
+          </Portal>          
+        </MuiThemeProvider>
         <Editor
           onChange={this.onStateChange}
           onKeyDown={onKeyDown}
