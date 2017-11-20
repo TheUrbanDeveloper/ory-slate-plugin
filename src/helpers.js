@@ -51,7 +51,10 @@ export const ToolbarButton = ({
 }) => (
   <Button
     onTouchTap={onClick}
-    style={isActive ? { color: 'rgb(0, 188, 212)' } : { color: 'white' }}
+    style={{
+      color: isActive ? 'rgb(0, 188, 212)' : 'white',
+      minWidth: '44px',      
+    }}
   >
     {icon}
   </Button>

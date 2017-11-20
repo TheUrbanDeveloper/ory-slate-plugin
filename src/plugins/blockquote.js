@@ -50,6 +50,12 @@ export default class BlockquotePlugin extends Plugin {
       )
     )
 
+    // In the interests of backwards compatability, this plugin is 'enabled'
+    // but the button it uses is hidden. This is so any articles/pages currently
+    // using the plugin aren't affected by it being disabled.
+    return null;
+
+    /*
     return (
       <ToolbarButton
         onClick={onClick}
@@ -57,6 +63,7 @@ export default class BlockquotePlugin extends Plugin {
         icon={<BlockquoteIcon />}
       />
     )
+    */
   }
 
   name = 'blockquote'
@@ -72,7 +79,7 @@ export default class BlockquotePlugin extends Plugin {
     })
   ]
 
-  toolbarButtons = [this.Button]
+  //toolbarButtons = [this.Button]
 
   deserialize = (el, next) => {
     switch (el.tagName.toLowerCase()) {

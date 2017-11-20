@@ -70,6 +70,9 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
             editorState={editorState}
             onChange={onChange}
             focus={focus}
+            style={{
+              minWidth: '44px',
+            }}
           />
         ))
       )}

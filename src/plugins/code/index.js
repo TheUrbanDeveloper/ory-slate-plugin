@@ -34,7 +34,9 @@ export default class CodePlugin extends Plugin {
       const isActive =
         editorState && editorState.marks.some(mark => mark.type === type)
 
-      return <ToolbarButton onClick={onClick} isActive={isActive} icon={icon} />
+      return null;
+      // see backwards compatability note in blockquote.
+      //return <ToolbarButton onClick={onClick} isActive={isActive} icon={icon} />
     }
 
     return Button
@@ -55,9 +57,10 @@ export default class CodePlugin extends Plugin {
         )
       }
 
-      const isActive = editorState.blocks.some(block => block.type === type)
 
-      return <ToolbarButton onClick={onClick} isActive={isActive} icon={icon} />
+      return null;
+      // see backwards compatability note in blockquote.
+      //const isActive = editorState.blocks.some(block => block.type === type)
     }
 
     return Button
@@ -68,8 +71,8 @@ export default class CodePlugin extends Plugin {
   marks = { [CODE]: makeTagMark('code') }
   nodes = { [CODE]: Code }
 
-  hoverButtons = [this.createButton(CODE, <CodeIcon />)]
-  toolbarButtons = [this.createNodeButton(CODE, <CodeIcon />)]
+  //hoverButtons = [this.createButton(CODE, <CodeIcon />)]
+  //toolbarButtons = [this.createNodeButton(CODE, <CodeIcon />)]
 
   deserialize = (el, next) => {
     switch (el.tagName.toLowerCase()) {
