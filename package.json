@@ -1,6 +1,6 @@
 {
   "name": "ory-editor-plugins-slate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./lib/index.js",
   "author": "ORY GmbH - modified by MaxKelsen Pty Ltd.",
   "license": "GNU Lesser General Public License v3.0",
