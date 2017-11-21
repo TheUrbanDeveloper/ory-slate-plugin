@@ -27,7 +27,6 @@ export default class ParagraphPlugin extends Plugin {
     object: { type: string, kind: string, data: any },
     children: any[]
   ) => {
-    console.log(object.data);
     if (object.kind !== 'block') {
       return
     }
