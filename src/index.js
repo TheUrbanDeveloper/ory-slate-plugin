@@ -42,17 +42,27 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
       return state
     }
 
-    if (data.isShift && data.key === 'enter') {
+    if ( data.key === 'enter') {
       return state
         .transform()
         .insertText('\n')
         .apply()
     }
 
+    if (data.key === '-') {
+      const doc = state.document.getBlocks().last().getLastText().text
+      if(doc.length > 0) {
+        if(doc[doc.length - 1] === '-') {
+          // prevent the actual hyphen getting in
+          e.preventDefault();
+          return state.transform().deleteBackward().insertText('\u2014').apply();
+        }
+      }
+    }
+
     for (let i = 0; i < plugins.length; i++) {
       const { onKeyDown } = plugins[i]
       const newState = onKeyDown && onKeyDown(e, data, state)
-
       if (newState) {
         return newState
       }

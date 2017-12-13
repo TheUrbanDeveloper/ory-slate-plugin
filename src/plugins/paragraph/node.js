@@ -20,7 +20,7 @@ class Paragraph extends Component {
     const align = this.props.node.data.get('align')
     const indent = this.props.node.data.get('indent')
     return (
-      <p {...attributes} style={{ textAlign: align, marginLeft: (5 * indent) + '%' }}>
+      <p {...attributes} style={{ textAlign: align, marginLeft: indent ? (5 * indent) : 0 + '%' }}>
         <Placeholder
           className="ory-plugins-content-slate-paragraph-placeholder"
           node={node}

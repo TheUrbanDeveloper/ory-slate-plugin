@@ -64,9 +64,6 @@ export default class EmphasizePlugin extends Plugin {
         case 'u':
           mark = U
           break
-        case 'k':
-          mark = S
-          break
         default:
           return
       }
