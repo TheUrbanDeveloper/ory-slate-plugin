@@ -42,7 +42,7 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
       return state
     }
 
-    if ( data.key === 'enter') {
+    if ( data.isShift && data.key === 'enter') {
       return state
         .transform()
         .insertText('\n')
