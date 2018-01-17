@@ -40,7 +40,6 @@ export default class HeadingsPlugin extends Plugin {
       e.preventDefault()
 
       const isActive = editorState.blocks.some(block => block.type === type)
-
       onChange(
         editorState
           .transform()

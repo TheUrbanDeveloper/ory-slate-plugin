@@ -59,6 +59,7 @@ class Slate extends Component {
     const {
       focused,
       readOnly,
+      id,
       state: { editorState },
       schema,
       plugins,
@@ -94,15 +95,19 @@ class Slate extends Component {
           state={editorState}
           plugins={plugins}
         />
-        {readOnly ? null : (
-          <BottomToolbar open={focused}>
-            <ToolbarButtons
-              editorState={editorState}
-              onChange={this.onStateChange}
-              focus={focus}
-            />
+        {readOnly || !focused ? null :
+          (
+            <BottomToolbar key={id} open={focused}>
+              <ToolbarButtons
+                key={id}
+                id={id}
+                editorState={editorState}
+                onChange={this.onStateChange}
+                focus={focus}
+              />
           </BottomToolbar>
-        )}
+          )
+        }
       </div>
     )
   }

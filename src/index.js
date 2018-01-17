@@ -90,12 +90,12 @@ export default (plugins: Plugin[] = hooks.defaultPlugins) => {
   )
   props.HoverButtons = HoverButtons
 
-  const ToolbarButtons = ({ editorState, onChange, focus }: Props) => (
+  const ToolbarButtons = ({ editorState, onChange, focus, id }: Props) => (
     <div>
       {plugins.map((plugin: Plugin, i: number) =>
         plugin.toolbarButtons.map((Button: any, j: number) => (
           <Button
-            key={`${i}-${j}`}
+            key={`${id}-${i}-${j}`}
             editorState={editorState}
             onChange={onChange}
             focus={focus}
