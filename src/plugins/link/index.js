@@ -5,6 +5,8 @@ import TextField from 'material-ui/TextField'
 import { ToolbarButton } from '../../helpers'
 import Plugin from '../Plugin'
 import Link from './node'
+import Checkbox from 'material-ui/Checkbox'
+import { FormControlLabel } from 'material-ui/Form'
 import Dialog, { DialogTitle, DialogActions, DialogContent } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import { Data } from 'slate'
@@ -17,7 +19,8 @@ class LinkButton extends Component {
     open: false,
     href: '',
     title: '',
-    hadLinks: false
+    hadLinks: false,
+    newTab: false,
   }
 
   props: Props
@@ -55,7 +58,8 @@ class LinkButton extends Component {
         wasExpanded: editorState.isExpanded,
         href: '',
         title: '',
-        hadLinks: hasLinks
+        hadLinks: hasLinks,
+        newTab: false,
       })
     } else {
       this.setState({
@@ -63,7 +67,8 @@ class LinkButton extends Component {
         wasExpanded: editorState.isExpanded,
         href: '',
         title: '',
-        hadLinks: hasLinks
+        hadLinks: hasLinks,
+        newTab: false,
       })
     }
   }
@@ -94,7 +99,7 @@ class LinkButton extends Component {
         .transform()
         .wrapInline({
           type: A,
-          data: { href: this.state.href }
+          data: { href: this.state.href, newTab: this.state.newTab }
         })
         .collapseToEnd()
         .apply()
@@ -123,6 +128,10 @@ class LinkButton extends Component {
 
     this.props.onChange(newState)
     window.setTimeout(() => this.props.focus(), 100)
+  }
+
+  onCheck = e => {
+    this.setState({ newTab: e.target.checked })
   }
 
   onHrefChange = e => {
@@ -156,7 +165,7 @@ class LinkButton extends Component {
               {this.state.wasExpanded ? null : (
                 <div>
                   <TextField
-                    hintText="Link title"
+                    label="Link title"
                     onChange={this.onTitleChange}
                     value={this.state.title}
                   />
@@ -164,9 +173,21 @@ class LinkButton extends Component {
               )}
               <div ref={this.onRef}>
                 <TextField
-                  hintText="http://example.com/my/link.html"
+                  label="http://example.com/my/link.html"
                   onChange={this.onHrefChange}
                   value={this.state.href}
+                />
+              </div>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.newTab}
+                      onChange={this.onCheck}
+                      value="newTab"
+                    />
+                  }
+                  label="Open in new tab"
                 />
               </div>
             </DialogContent>
@@ -210,7 +231,8 @@ export default class LinkPlugin extends Plugin {
           data: Data.create({
             href: (el.attrs.find(({ name }) => name === 'href') || {
               value: ''
-            }).value
+            }).value,
+            newTab: false,
           })
         }
     }
@@ -225,7 +247,7 @@ export default class LinkPlugin extends Plugin {
     }
     switch (object.type) {
       case A:
-        return <a href={object.data.get('href')}>{children}</a>
+        return <a href={object.data.get('href')} target={object.data.get('newTab') ? '_blank' : ''}>{children}</a>
     }
   }
 }

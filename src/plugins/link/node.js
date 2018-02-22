@@ -11,9 +11,9 @@ const Link = ({
 }) => {
   const { data } = node
   const href = data.get('href')
-
+  const newTab = data.get('newTab')
   return (
-    <a {...attributes} href={href}>
+    <a {...attributes} href={href} target={newTab ? '_blank' : ''}>
       {children}
     </a>
   )
